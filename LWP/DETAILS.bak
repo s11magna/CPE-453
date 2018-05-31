@@ -1,0 +1,2862 @@
+=================================================
+TEST 7: Five lwps, calling lwp_yield(), then lwp_exit()
+
+This test spawns five LWPs, each of which yields once,
+then calls lwp_exit() the second time.
+----------
+Reference:
+----------
+Greetings from Thread 0.  Yielding...
+Greetings from Thread 1.  Yielding...
+Greetings from Thread 2.  Yielding...
+Greetings from Thread 3.  Yielding...
+Greetings from Thread 4.  Yielding...
+I (0) am still alive.  Goodbye.
+I (1) am still alive.  Goodbye.
+I (2) am still alive.  Goodbye.
+I (3) am still alive.  Goodbye.
+I (4) am still alive.  Goodbye.
+LWPs have ended.
+----------
+Submitted:
+----------
+Child process (21648) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,11c1
+< Greetings from Thread 0.  Yielding...
+< Greetings from Thread 1.  Yielding...
+< Greetings from Thread 2.  Yielding...
+< Greetings from Thread 3.  Yielding...
+< Greetings from Thread 4.  Yielding...
+< I (0) am still alive.  Goodbye.
+< I (1) am still alive.  Goodbye.
+< I (2) am still alive.  Goodbye.
+< I (3) am still alive.  Goodbye.
+< I (4) am still alive.  Goodbye.
+< LWPs have ended.
+---
+> Child process (21648) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 8: Five threads, variable iters, exit from front
+
+This is the numbersmain program distributed with the assignment.
+Each thread (1..5) exits after its number of iterations
+
+
+----------
+Reference:
+----------
+Launching LWPS
+    1
+         2
+              3
+                   4
+                        5
+         2
+              3
+                   4
+                        5
+              3
+                   4
+                        5
+                   4
+                        5
+                        5
+Back from LWPS.
+----------
+Submitted:
+----------
+Child process (21676) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,17c1
+< Launching LWPS
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<          2
+<               3
+<                    4
+<                         5
+<               3
+<                    4
+<                         5
+<                    4
+<                         5
+<                         5
+< Back from LWPS.
+---
+> Child process (21676) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 9: Five threads, variable iters, exit from back
+
+This is the numbersmain program distributed with the assignment.
+Each thread (1..5) exits after N minus its number of iterations.
+The effect is to always have the last process call lwp_exit().
+
+
+----------
+Reference:
+----------
+Launching LWPS
+    1
+         2
+              3
+                   4
+                        5
+    1
+         2
+              3
+                   4
+    1
+         2
+              3
+    1
+         2
+    1
+Back from LWPS.
+----------
+Submitted:
+----------
+Child process (21705) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,17c1
+< Launching LWPS
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<     1
+<          2
+<               3
+<                    4
+<     1
+<          2
+<               3
+<     1
+<          2
+<     1
+< Back from LWPS.
+---
+> Child process (21705) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 12: Ten lwps, yields, and returns
+
+This test spawns several threads that prints a message, yields
+to itself, then returns
+
+----------
+Reference:
+----------
+Greetings from Thread 0.  Yielding...
+Greetings from Thread 1.  Yielding...
+Greetings from Thread 2.  Yielding...
+Greetings from Thread 3.  Yielding...
+Greetings from Thread 4.  Yielding...
+Greetings from Thread 5.  Yielding...
+Greetings from Thread 6.  Yielding...
+Greetings from Thread 7.  Yielding...
+Greetings from Thread 8.  Yielding...
+Greetings from Thread 9.  Yielding...
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+I'm still alive.  Goodbye
+After thread termination
+----------
+Submitted:
+----------
+Child process (21779) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,21c1
+< Greetings from Thread 0.  Yielding...
+< Greetings from Thread 1.  Yielding...
+< Greetings from Thread 2.  Yielding...
+< Greetings from Thread 3.  Yielding...
+< Greetings from Thread 4.  Yielding...
+< Greetings from Thread 5.  Yielding...
+< Greetings from Thread 6.  Yielding...
+< Greetings from Thread 7.  Yielding...
+< Greetings from Thread 8.  Yielding...
+< Greetings from Thread 9.  Yielding...
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< I'm still alive.  Goodbye
+< After thread termination
+---
+> Child process (21779) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 13: Three lwps.  Stop, then restart
+
+This test spawns a three threads each of which stops and restarts
+several times.
+
+
+----------
+Reference:
+----------
+Starting LWPs...
+Test
+Test
+Test
+Test2
+Test2
+Test2
+Test3
+Test3
+Test3
+Test4
+Test4
+Test4
+Test5
+Test5
+Test5
+Test6
+Test6
+Test6
+Done.
+----------
+Submitted:
+----------
+Child process (21812) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,20c1
+< Starting LWPs...
+< Test
+< Test
+< Test
+< Test2
+< Test2
+< Test2
+< Test3
+< Test3
+< Test3
+< Test4
+< Test4
+< Test4
+< Test5
+< Test5
+< Test5
+< Test6
+< Test6
+< Test6
+< Done.
+---
+> Child process (21812) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 14: Five lwps, all exit, recreate then call start
+
+Creates five lwps each of which eventually exits.  After exiting,
+main() recreates them and calls start again()
+
+----------
+Reference:
+----------
+Greetings from Thread 0.  Yielding...
+Greetings from Thread 1.  Yielding...
+Greetings from Thread 2.  Yielding...
+Greetings from Thread 3.  Yielding...
+Greetings from Thread 4.  Yielding...
+I (0) am still alive.  Goodbye.
+I (1) am still alive.  Goodbye.
+I (2) am still alive.  Goodbye.
+I (3) am still alive.  Goodbye.
+I (4) am still alive.  Goodbye.
+First round complete. Restarting with no queue
+Creating five LWPs and starting them
+Greetings from Thread 0.  Yielding...
+Greetings from Thread 1.  Yielding...
+Greetings from Thread 2.  Yielding...
+Greetings from Thread 3.  Yielding...
+Greetings from Thread 4.  Yielding...
+I (0) am still alive.  Goodbye.
+I (1) am still alive.  Goodbye.
+I (2) am still alive.  Goodbye.
+I (3) am still alive.  Goodbye.
+I (4) am still alive.  Goodbye.
+LWPs have ended.
+----------
+Submitted:
+----------
+Child process (21840) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,23c1
+< Greetings from Thread 0.  Yielding...
+< Greetings from Thread 1.  Yielding...
+< Greetings from Thread 2.  Yielding...
+< Greetings from Thread 3.  Yielding...
+< Greetings from Thread 4.  Yielding...
+< I (0) am still alive.  Goodbye.
+< I (1) am still alive.  Goodbye.
+< I (2) am still alive.  Goodbye.
+< I (3) am still alive.  Goodbye.
+< I (4) am still alive.  Goodbye.
+< First round complete. Restarting with no queue
+< Creating five LWPs and starting them
+< Greetings from Thread 0.  Yielding...
+< Greetings from Thread 1.  Yielding...
+< Greetings from Thread 2.  Yielding...
+< Greetings from Thread 3.  Yielding...
+< Greetings from Thread 4.  Yielding...
+< I (0) am still alive.  Goodbye.
+< I (1) am still alive.  Goodbye.
+< I (2) am still alive.  Goodbye.
+< I (3) am still alive.  Goodbye.
+< I (4) am still alive.  Goodbye.
+< LWPs have ended.
+---
+> Child process (21840) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 16: Two Lwps. spawn then exits 50 times.
+
+Two threads creates new ones, then exits.
+
+
+
+----------
+Reference:
+----------
+Counter is 50.  Exiting
+Counter is 50.  Exiting
+Counter is 49.  Exiting
+Counter is 49.  Exiting
+Counter is 48.  Exiting
+Counter is 48.  Exiting
+Counter is 47.  Exiting
+Counter is 47.  Exiting
+Counter is 46.  Exiting
+Counter is 46.  Exiting
+Counter is 45.  Exiting
+Counter is 45.  Exiting
+Counter is 44.  Exiting
+Counter is 44.  Exiting
+Counter is 43.  Exiting
+Counter is 43.  Exiting
+Counter is 42.  Exiting
+Counter is 42.  Exiting
+Counter is 41.  Exiting
+Counter is 41.  Exiting
+Counter is 40.  Exiting
+Counter is 40.  Exiting
+Counter is 39.  Exiting
+Counter is 39.  Exiting
+Counter is 38.  Exiting
+Counter is 38.  Exiting
+Counter is 37.  Exiting
+Counter is 37.  Exiting
+Counter is 36.  Exiting
+Counter is 36.  Exiting
+Counter is 35.  Exiting
+Counter is 35.  Exiting
+Counter is 34.  Exiting
+Counter is 34.  Exiting
+Counter is 33.  Exiting
+Counter is 33.  Exiting
+Counter is 32.  Exiting
+Counter is 32.  Exiting
+Counter is 31.  Exiting
+Counter is 31.  Exiting
+Counter is 30.  Exiting
+Counter is 30.  Exiting
+Counter is 29.  Exiting
+Counter is 29.  Exiting
+Counter is 28.  Exiting
+Counter is 28.  Exiting
+Counter is 27.  Exiting
+Counter is 27.  Exiting
+Counter is 26.  Exiting
+Counter is 26.  Exiting
+Counter is 25.  Exiting
+Counter is 25.  Exiting
+Counter is 24.  Exiting
+Counter is 24.  Exiting
+Counter is 23.  Exiting
+Counter is 23.  Exiting
+Counter is 22.  Exiting
+Counter is 22.  Exiting
+Counter is 21.  Exiting
+Counter is 21.  Exiting
+Counter is 20.  Exiting
+Counter is 20.  Exiting
+Counter is 19.  Exiting
+Counter is 19.  Exiting
+Counter is 18.  Exiting
+Counter is 18.  Exiting
+Counter is 17.  Exiting
+Counter is 17.  Exiting
+Counter is 16.  Exiting
+Counter is 16.  Exiting
+Counter is 15.  Exiting
+Counter is 15.  Exiting
+Counter is 14.  Exiting
+Counter is 14.  Exiting
+Counter is 13.  Exiting
+Counter is 13.  Exiting
+Counter is 12.  Exiting
+Counter is 12.  Exiting
+Counter is 11.  Exiting
+Counter is 11.  Exiting
+Counter is 10.  Exiting
+Counter is 10.  Exiting
+Counter is 9.  Exiting
+Counter is 9.  Exiting
+Counter is 8.  Exiting
+Counter is 8.  Exiting
+Counter is 7.  Exiting
+Counter is 7.  Exiting
+Counter is 6.  Exiting
+Counter is 6.  Exiting
+Counter is 5.  Exiting
+Counter is 5.  Exiting
+Counter is 4.  Exiting
+Counter is 4.  Exiting
+Counter is 3.  Exiting
+Counter is 3.  Exiting
+Counter is 2.  Exiting
+Counter is 2.  Exiting
+Counter is 1.  Exiting
+Counter is 1.  Exiting
+Bye
+Bye
+----------
+Submitted:
+----------
+Child process (21893) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,102c1
+< Counter is 50.  Exiting
+< Counter is 50.  Exiting
+< Counter is 49.  Exiting
+< Counter is 49.  Exiting
+< Counter is 48.  Exiting
+< Counter is 48.  Exiting
+< Counter is 47.  Exiting
+< Counter is 47.  Exiting
+< Counter is 46.  Exiting
+< Counter is 46.  Exiting
+< Counter is 45.  Exiting
+< Counter is 45.  Exiting
+< Counter is 44.  Exiting
+< Counter is 44.  Exiting
+< Counter is 43.  Exiting
+< Counter is 43.  Exiting
+< Counter is 42.  Exiting
+< Counter is 42.  Exiting
+< Counter is 41.  Exiting
+< Counter is 41.  Exiting
+< Counter is 40.  Exiting
+< Counter is 40.  Exiting
+< Counter is 39.  Exiting
+< Counter is 39.  Exiting
+< Counter is 38.  Exiting
+< Counter is 38.  Exiting
+< Counter is 37.  Exiting
+< Counter is 37.  Exiting
+< Counter is 36.  Exiting
+< Counter is 36.  Exiting
+< Counter is 35.  Exiting
+< Counter is 35.  Exiting
+< Counter is 34.  Exiting
+< Counter is 34.  Exiting
+< Counter is 33.  Exiting
+< Counter is 33.  Exiting
+< Counter is 32.  Exiting
+< Counter is 32.  Exiting
+< Counter is 31.  Exiting
+< Counter is 31.  Exiting
+< Counter is 30.  Exiting
+< Counter is 30.  Exiting
+< Counter is 29.  Exiting
+< Counter is 29.  Exiting
+< Counter is 28.  Exiting
+< Counter is 28.  Exiting
+< Counter is 27.  Exiting
+< Counter is 27.  Exiting
+< Counter is 26.  Exiting
+< Counter is 26.  Exiting
+< Counter is 25.  Exiting
+< Counter is 25.  Exiting
+< Counter is 24.  Exiting
+< Counter is 24.  Exiting
+< Counter is 23.  Exiting
+< Counter is 23.  Exiting
+< Counter is 22.  Exiting
+< Counter is 22.  Exiting
+< Counter is 21.  Exiting
+< Counter is 21.  Exiting
+< Counter is 20.  Exiting
+< Counter is 20.  Exiting
+< Counter is 19.  Exiting
+< Counter is 19.  Exiting
+< Counter is 18.  Exiting
+< Counter is 18.  Exiting
+< Counter is 17.  Exiting
+< Counter is 17.  Exiting
+< Counter is 16.  Exiting
+< Counter is 16.  Exiting
+< Counter is 15.  Exiting
+< Counter is 15.  Exiting
+< Counter is 14.  Exiting
+< Counter is 14.  Exiting
+< Counter is 13.  Exiting
+< Counter is 13.  Exiting
+< Counter is 12.  Exiting
+< Counter is 12.  Exiting
+< Counter is 11.  Exiting
+< Counter is 11.  Exiting
+< Counter is 10.  Exiting
+< Counter is 10.  Exiting
+< Counter is 9.  Exiting
+< Counter is 9.  Exiting
+< Counter is 8.  Exiting
+< Counter is 8.  Exiting
+< Counter is 7.  Exiting
+< Counter is 7.  Exiting
+< Counter is 6.  Exiting
+< Counter is 6.  Exiting
+< Counter is 5.  Exiting
+< Counter is 5.  Exiting
+< Counter is 4.  Exiting
+< Counter is 4.  Exiting
+< Counter is 3.  Exiting
+< Counter is 3.  Exiting
+< Counter is 2.  Exiting
+< Counter is 2.  Exiting
+< Counter is 1.  Exiting
+< Counter is 1.  Exiting
+< Bye
+< Bye
+---
+> Child process (21893) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 17: 100 threads with a minimal stack.  Just return.
+
+Create 100 threads, each with a 40-word stack.  All they do is return.
+
+
+
+----------
+Reference:
+----------
+Spawining 100 minumal threads.
+Done.  Count is 100.
+----------
+Submitted:
+----------
+Child process (21921) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,2c1
+< Spawining 100 minumal threads.
+< Done.  Count is 100.
+---
+> Child process (21921) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 18: 1024 threads, random exit.
+
+Creat 1024 threads, each of which either yields or exits randomly until
+a counter reaches a given value.
+
+
+
+
+----------
+Reference:
+----------
+Spawining 4096 threads.
+Done.  Count is 50000. (Yielded 406869 times)
+----------
+Submitted:
+----------
+Timed out.
+Child process (21953) exited due to signal (Terminated).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,2c1,2
+< Spawining 4096 threads.
+< Done.  Count is 50000. (Yielded 406869 times)
+---
+> Timed out.
+> Child process (21953) exited due to signal (Terminated).
+---------
+=================================================
+TEST 21: Transfer threads between schedulers (stopped)
+
+Create a number of threads, then set_scheduler() and see if 
+they transfer properly.
+
+
+
+
+
+----------
+Reference:
+----------
+Creating LWPS
+Setting the scheduler.
+Launching LWPS
+    1
+         2
+              3
+                   4
+                        5
+         2
+              3
+                   4
+                        5
+              3
+                   4
+                        5
+                   4
+                        5
+                        5
+Back from LWPS.
+----------
+Submitted:
+----------
+Timed out.
+Child process (23024) exited due to signal (Terminated).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,19c1,2
+< Creating LWPS
+< Setting the scheduler.
+< Launching LWPS
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<          2
+<               3
+<                    4
+<                         5
+<               3
+<                    4
+<                         5
+<                    4
+<                         5
+<                         5
+< Back from LWPS.
+---
+> Timed out.
+> Child process (23024) exited due to signal (Terminated).
+---------
+=================================================
+TEST 22: Transfer threads between schedulers (live)
+
+Create a number of threads, start them running,
+then set_scheduler() and see if they transfer properly.
+
+
+
+
+
+----------
+Reference:
+----------
+Creating LWPS
+Launching LWPS
+    1
+         2
+              3
+                   4
+                        5
+    1
+         2
+              3
+                   4
+                        5
+    1
+         2
+              3
+                   4
+                        5
+Setting the scheduler.
+    1
+         2
+              3
+                   4
+                        5
+    1
+         2
+              3
+                   4
+                        5
+    1
+         2
+              3
+                   4
+                        5
+Back from LWPS.
+----------
+Submitted:
+----------
+Timed out.
+Child process (23123) exited due to signal (Terminated).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,34c1,2
+< Creating LWPS
+< Launching LWPS
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<     1
+<          2
+<               3
+<                    4
+<                         5
+< Setting the scheduler.
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<     1
+<          2
+<               3
+<                    4
+<                         5
+<     1
+<          2
+<               3
+<                    4
+<                         5
+< Back from LWPS.
+---
+> Timed out.
+> Child process (23123) exited due to signal (Terminated).
+---------
+=================================================
+TEST 23: Sched->next() returns NULL to lwp_yield()
+
+Has a scheduler that returns a thread once, then NULL thereafter.
+
+
+
+
+
+----------
+Reference:
+----------
+Before the LWPS.
+First print in threadfun().
+Back from LWPS.
+----------
+Submitted:
+----------
+Child process (23443) exited due to signal (Segmentation fault).
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1,3c1
+< Before the LWPS.
+< First print in threadfun().
+< Back from LWPS.
+---
+> Child process (23443) exited due to signal (Segmentation fault).
+---------
+=================================================
+TEST 24: Transfer threads between schedulers check for init/shutdown
+
+Create a number of threads, start them running,
+then set_scheduler() and see if they transfer properly.
+
+
+
+
+
+----------
+Reference:
+----------
+init: called on first scheduler
+Creating LWPS
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Launching LWPS
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+Setting the scheduler.
+init: called on second scheduler
+(first->next())
+Removing thread from First scheduler
+Admitting new thread to Second scheduler
+(first->next())
+Removing thread from First scheduler
+Admitting new thread to Second scheduler
+(first->next())
+Removing thread from First scheduler
+Admitting new thread to Second scheduler
+(first->next())
+Removing thread from First scheduler
+Admitting new thread to Second scheduler
+(first->next())
+Removing thread from First scheduler
+Admitting new thread to Second scheduler
+(first->next())
+shutdown: called on first scheduler
+(second->next())
+    1
+(second->next())
+         2
+(second->next())
+              3
+(second->next())
+                   4
+(second->next())
+                        5
+(second->next())
+    1
+(second->next())
+         2
+(second->next())
+              3
+(second->next())
+                   4
+(second->next())
+                        5
+(second->next())
+    1
+(second->next())
+         2
+(second->next())
+              3
+(second->next())
+                   4
+(second->next())
+                        5
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Back from LWPS.
+----------
+Submitted:
+----------
+Creating LWPS
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Admitting new thread to First scheduler
+Launching LWPS
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+(first->next())
+    1
+(first->next())
+         2
+(first->next())
+              3
+(first->next())
+                   4
+(first->next())
+                        5
+Setting the scheduler.
+Admitting new thread to Second scheduler
+Admitting new thread to First scheduler
+Admitting new thread to Second scheduler
+Admitting new thread to First scheduler
+Admitting new thread to Second scheduler
+Admitting new thread to First scheduler
+Admitting new thread to Second scheduler
+Admitting new thread to First scheduler
+Admitting new thread to Second scheduler
+Admitting new thread to First scheduler
+(second->next())
+    1
+(second->next())
+         2
+(second->next())
+              3
+(second->next())
+                   4
+(second->next())
+                        5
+(second->next())
+                        5
+(second->next())
+                        5
+(second->next())
+Removing thread from Second scheduler
+(second->next())
+Back from LWPS.
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+1d0
+< init: called on first scheduler
+40,42d38
+< init: called on second scheduler
+< (first->next())
+< Removing thread from First scheduler
+44,45c40
+< (first->next())
+< Removing thread from First scheduler
+---
+> Admitting new thread to First scheduler
+47,48c42
+< (first->next())
+< Removing thread from First scheduler
+---
+> Admitting new thread to First scheduler
+50,51c44
+< (first->next())
+< Removing thread from First scheduler
+---
+> Admitting new thread to First scheduler
+53,54c46
+< (first->next())
+< Removing thread from First scheduler
+---
+> Admitting new thread to First scheduler
+56,57c48
+< (first->next())
+< shutdown: called on first scheduler
+---
+> Admitting new thread to First scheduler
+69,76d59
+<     1
+< (second->next())
+<          2
+< (second->next())
+<               3
+< (second->next())
+<                    4
+< (second->next())
+79,86d61
+<     1
+< (second->next())
+<          2
+< (second->next())
+<               3
+< (second->next())
+<                    4
+< (second->next())
+88,95d62
+< (second->next())
+< Removing thread from Second scheduler
+< (second->next())
+< Removing thread from Second scheduler
+< (second->next())
+< Removing thread from Second scheduler
+< (second->next())
+< Removing thread from Second scheduler
+---------
+=================================================
+TEST 26: Does tid2thread return the right thread?
+
+This is the similar numbersmain program distributed with the
+assignment, but with a scheduler that returns a random thread.
+(seeded, so reproducible).  After 50 iterations, the last thread runs
+through the list of all threads and sees if tid2thread is returning
+the right context.
+
+
+
+----------
+Reference:
+----------
+Launching LWPS
+         2
+                                            9
+                                            9
+                                  7
+              3
+    1
+         2
+                        5
+         2
+              3
+                                       8
+              3
+                                       8
+                             6
+         2
+                             6
+              3
+              3
+    1
+         2
+    1
+                                            9
+                             6
+              3
+         2
+    1
+                                            9
+                   4
+                        5
+                             6
+         2
+         2
+         2
+                        5
+    1
+                   4
+                        5
+              3
+                                  7
+                        5
+         2
+         2
+         2
+                   4
+                                            9
+                   4
+                                            9
+         2
+                   4
+                                  7
+                                            9
+    1
+         2
+    1
+                                            9
+                                            9
+                        5
+    1
+                        5
+                                            9
+                             6
+                             6
+         2
+                                       8
+    1
+                                            9
+                                  7
+    1
+                        5
+                                  7
+                                  7
+                                  7
+                                  7
+                                  7
+                                            9
+                             6
+                                       8
+                   4
+    1
+                             6
+                   4
+    1
+                                  7
+                             6
+         2
+                        5
+         2
+                   4
+              3
+                   4
+    1
+                                  7
+                             6
+                             6
+                                  7
+                                       8
+                             6
+                             6
+                                            9
+         2
+         2
+              3
+                        5
+                             6
+                        5
+                                       8
+                   4
+                             6
+              3
+              3
+    1
+              3
+    1
+              3
+         2
+              3
+                                            9
+                        5
+                             6
+         2
+                             6
+              3
+              3
+                                  7
+                   4
+                             6
+                                            9
+         2
+         2
+                             6
+                                            9
+                                  7
+              3
+                             6
+              3
+                                       8
+              3
+                        5
+    1
+              3
+                   4
+                                  7
+                                            9
+                                       8
+         2
+                   4
+                   4
+                   4
+         2
+                   4
+                                       8
+         2
+                                       8
+    1
+                             6
+                                  7
+                                            9
+                             6
+    1
+              3
+                        5
+              3
+         2
+                                  7
+                                       8
+                   4
+                        5
+                                            9
+                                       8
+              3
+                                            9
+                                  7
+              3
+         2
+                                       8
+                                       8
+                                  7
+         2
+         2
+                                            9
+                   4
+                             6
+                        5
+                             6
+         2
+                   4
+                                  7
+                        5
+                   4
+         2
+    1
+         2
+                        5
+              3
+                                       8
+    1
+                   4
+    1
+                                  7
+                                  7
+                                            9
+    1
+                                       8
+                             6
+                        5
+                                  7
+              3
+    1
+                                       8
+              3
+                             6
+                             6
+              3
+              3
+                        5
+                        5
+                                  7
+    1
+                                  7
+                                            9
+                                       8
+                   4
+                        5
+                                  7
+                                       8
+                        5
+                                  7
+                                            9
+         2
+                                            9
+              3
+                        5
+         2
+    1
+                                       8
+         2
+         2
+                             6
+                                       8
+                   4
+              3
+                             6
+         2
+                        5
+                                            9
+                        5
+                                            9
+                   4
+              3
+                   4
+    1
+                                       8
+              3
+                                            9
+                                  7
+              3
+                             6
+                        5
+              3
+                             6
+              3
+         2
+                                  7
+                                       8
+                        5
+                                  7
+              3
+                                            9
+                             6
+         2
+         2
+                        5
+                   4
+                                            9
+                             6
+                                  7
+                                            9
+                                       8
+                        5
+                   4
+                   4
+                        5
+              3
+                        5
+              3
+                             6
+                   4
+                             6
+                                       8
+              3
+                             6
+              3
+                   4
+                   4
+              3
+    1
+              3
+                        5
+                                  7
+                   4
+         2
+                   4
+                   4
+    1
+                                  7
+         2
+                                       8
+                        5
+                                            9
+              3
+                                       8
+    1
+                        5
+                             6
+                                            9
+              3
+                                       8
+                                  7
+    1
+                             6
+                                            9
+                             6
+                                  7
+    1
+                        5
+              3
+         2
+                             6
+                             6
+                                       8
+                                            9
+                                  7
+                                            9
+                                       8
+    1
+                                  7
+                                            9
+                                       8
+         2
+                             6
+                             6
+                   4
+                                       8
+                   4
+              3
+    1
+                                  7
+                                            9
+                                  7
+                                  7
+                             6
+                        5
+                                            9
+                                            9
+         2
+                                            9
+                                  7
+                                            9
+         2
+                                  7
+                                            9
+         2
+                        5
+                                  7
+                             6
+                                            9
+                                            9
+    1
+                   4
+                        5
+    1
+         2
+    1
+                                            9
+                             6
+                        5
+         2
+              3
+                   4
+                                       8
+                                  7
+                        5
+                                            9
+                   4
+                                            9
+Checking thread IDs...
+...done.
+----------
+Submitted:
+----------
+Launching LWPS
+         2
+                                            9
+                                            9
+                                  7
+              3
+    1
+         2
+                        5
+         2
+              3
+                                       8
+              3
+                                       8
+                             6
+         2
+                             6
+              3
+              3
+    1
+         2
+    1
+                                            9
+                             6
+              3
+         2
+    1
+                                            9
+                   4
+                        5
+                             6
+         2
+         2
+         2
+                        5
+    1
+                   4
+                        5
+              3
+                                  7
+                        5
+         2
+         2
+         2
+                   4
+                                            9
+                   4
+                                            9
+         2
+                   4
+                                  7
+                                            9
+    1
+         2
+    1
+                                            9
+                                            9
+                        5
+    1
+                        5
+                                            9
+                             6
+                             6
+         2
+                                       8
+    1
+                                            9
+                                  7
+    1
+                        5
+                                  7
+                                  7
+                                  7
+                                  7
+                                  7
+                                            9
+                             6
+                                       8
+                   4
+    1
+                             6
+                   4
+    1
+                                  7
+                             6
+         2
+                        5
+         2
+                   4
+              3
+                   4
+    1
+                                  7
+                             6
+                             6
+                                  7
+                                       8
+                             6
+                             6
+                                            9
+         2
+         2
+              3
+                        5
+                             6
+                        5
+                                       8
+                   4
+                             6
+              3
+              3
+    1
+              3
+    1
+              3
+         2
+              3
+                                            9
+                        5
+                             6
+         2
+                             6
+              3
+              3
+                                  7
+                   4
+                             6
+                                            9
+         2
+         2
+                             6
+                                            9
+                                  7
+              3
+                             6
+              3
+                                       8
+              3
+                        5
+    1
+              3
+                   4
+                                  7
+                                            9
+                                       8
+         2
+                   4
+                   4
+                   4
+         2
+                   4
+                                       8
+         2
+                                       8
+    1
+                             6
+                                  7
+                                            9
+                             6
+    1
+              3
+                        5
+              3
+         2
+                                  7
+                                       8
+                   4
+                        5
+                                            9
+                                       8
+              3
+                                            9
+                                  7
+              3
+         2
+                                       8
+                                       8
+                                  7
+         2
+         2
+                                            9
+                   4
+                             6
+                        5
+                             6
+         2
+                   4
+                                  7
+                        5
+                   4
+         2
+    1
+         2
+                        5
+              3
+                                       8
+    1
+                   4
+    1
+                                  7
+                                  7
+                                            9
+    1
+                                       8
+                             6
+                        5
+                                  7
+              3
+    1
+                                       8
+              3
+                             6
+                             6
+              3
+              3
+                        5
+                        5
+                                  7
+    1
+                                  7
+                                            9
+                                       8
+                   4
+                        5
+                                  7
+                                       8
+                        5
+                                  7
+                                            9
+         2
+                                            9
+              3
+                        5
+         2
+    1
+                                       8
+         2
+         2
+                             6
+                                       8
+                   4
+              3
+                             6
+         2
+                        5
+                                            9
+                        5
+                                            9
+                   4
+              3
+                   4
+    1
+                                       8
+              3
+                                            9
+                                  7
+              3
+                             6
+                        5
+              3
+                             6
+              3
+         2
+                                  7
+                                       8
+                        5
+                                  7
+              3
+                                            9
+                             6
+         2
+         2
+                        5
+                   4
+                                            9
+                             6
+                                  7
+                                            9
+                                       8
+                        5
+                   4
+                   4
+                        5
+              3
+                        5
+              3
+                             6
+                   4
+                             6
+                                       8
+              3
+                             6
+              3
+                   4
+                   4
+              3
+    1
+              3
+                        5
+                                  7
+                   4
+         2
+                   4
+                   4
+    1
+                                  7
+         2
+                                       8
+                        5
+                                            9
+              3
+                                       8
+    1
+                        5
+                             6
+                                            9
+              3
+                                       8
+                                  7
+    1
+                             6
+                                            9
+                             6
+                                  7
+    1
+                        5
+              3
+         2
+                             6
+                             6
+                                       8
+                                            9
+                                  7
+                                            9
+                                       8
+    1
+                                  7
+                                            9
+                                       8
+         2
+                             6
+                             6
+                   4
+                                       8
+                   4
+              3
+    1
+                                  7
+                                            9
+                                  7
+                                  7
+                             6
+                        5
+                                            9
+                                            9
+         2
+                                            9
+                                  7
+                                            9
+         2
+                                  7
+                                            9
+         2
+                        5
+                                  7
+                             6
+                                            9
+                                            9
+    1
+                   4
+                        5
+    1
+         2
+    1
+                                            9
+                             6
+                        5
+         2
+              3
+                   4
+                                       8
+                                  7
+                        5
+                                            9
+                   4
+                                            9
+Checking thread IDs...
+  tid2thread() returned the wrong pointer (tid=2)
+  tid2thread() returned the wrong pointer (tid=3)
+  tid2thread() returned the wrong pointer (tid=4)
+  tid2thread() returned the wrong pointer (tid=5)
+  tid2thread() returned the wrong pointer (tid=6)
+  tid2thread() returned the wrong pointer (tid=7)
+  tid2thread() returned the wrong pointer (tid=8)
+...done.
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+387a388,394
+>   tid2thread() returned the wrong pointer (tid=2)
+>   tid2thread() returned the wrong pointer (tid=3)
+>   tid2thread() returned the wrong pointer (tid=4)
+>   tid2thread() returned the wrong pointer (tid=5)
+>   tid2thread() returned the wrong pointer (tid=6)
+>   tid2thread() returned the wrong pointer (tid=7)
+>   tid2thread() returned the wrong pointer (tid=8)
+---------
+=================================================
+TEST 27: Tid2thread() returns NULL given a bad tid?
+
+This launches a single thread, then calls tid2thread with 
+a threadID that isn't it.  Tid2thread should return NULL.
+
+
+----------
+Reference:
+----------
+Launching LWPS
+Back from LWPS.
+----------
+Submitted:
+----------
+tid2thread() returned a value with a bogus tid.  Not good
+Launching LWPS
+Back from LWPS.
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+0a1
+> tid2thread() returned a value with a bogus tid.  Not good
+---------
+=================================================
+TEST 28: Is thread library using sched_{one,two}?
+
+This launches a set of threads, then installs a scheduler that 
+intentionally places bogus values in sched_one and sched_two then 
+calls tid2thread() a bunch.
+
+
+
+----------
+Reference:
+----------
+Launching LWPS
+  1
+     2
+        3
+           4
+              5
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+        3
+           4
+              5
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+     2
+        3
+           4
+              5
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+           4
+              5
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+              5
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                 6
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                                    18
+                                                       19
+                                                          20
+                                                       19
+                                                          20
+                                                          20
+Back from LWPS.
+----------
+Submitted:
+----------
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+tid2thread() is returning bogus values
+Launching LWPS
+tid2thread() is returning bogus values
+  1
+tid2thread() is returning bogus values
+     2
+        3
+tid2thread() is returning bogus values
+           4
+              5
+tid2thread() is returning bogus values
+                 6
+tid2thread() is returning bogus values
+                    7
+tid2thread() is returning bogus values
+                       8
+tid2thread() is returning bogus values
+                          9
+tid2thread() is returning bogus values
+                            10
+tid2thread() is returning bogus values
+                               11
+tid2thread() is returning bogus values
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+tid2thread() is returning bogus values
+                                           15
+tid2thread() is returning bogus values
+                                              16
+tid2thread() is returning bogus values
+                                                 17
+tid2thread() is returning bogus values
+                                                    18
+tid2thread() is returning bogus values
+                                                       19
+tid2thread() is returning bogus values
+                                                          20
+        3
+tid2thread() is returning bogus values
+           4
+tid2thread() is returning bogus values
+              5
+tid2thread() is returning bogus values
+                 6
+                    7
+tid2thread() is returning bogus values
+                       8
+tid2thread() is returning bogus values
+                          9
+tid2thread() is returning bogus values
+                            10
+tid2thread() is returning bogus values
+                               11
+tid2thread() is returning bogus values
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+tid2thread() is returning bogus values
+                                           15
+tid2thread() is returning bogus values
+                                              16
+tid2thread() is returning bogus values
+                                                 17
+tid2thread() is returning bogus values
+                                                    18
+                                                       19
+                                                          20
+tid2thread() is returning bogus values
+     2
+        3
+           4
+              5
+tid2thread() is returning bogus values
+                 6
+tid2thread() is returning bogus values
+                    7
+tid2thread() is returning bogus values
+                       8
+tid2thread() is returning bogus values
+                          9
+tid2thread() is returning bogus values
+                            10
+tid2thread() is returning bogus values
+                               11
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+tid2thread() is returning bogus values
+                                           15
+tid2thread() is returning bogus values
+                                              16
+tid2thread() is returning bogus values
+                                                 17
+tid2thread() is returning bogus values
+                                                    18
+tid2thread() is returning bogus values
+                                                       19
+tid2thread() is returning bogus values
+                                                          20
+           4
+tid2thread() is returning bogus values
+              5
+tid2thread() is returning bogus values
+                 6
+tid2thread() is returning bogus values
+                    7
+tid2thread() is returning bogus values
+                       8
+                          9
+tid2thread() is returning bogus values
+                            10
+                               11
+tid2thread() is returning bogus values
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+tid2thread() is returning bogus values
+                                           15
+tid2thread() is returning bogus values
+                                              16
+tid2thread() is returning bogus values
+                                                 17
+tid2thread() is returning bogus values
+                                                    18
+tid2thread() is returning bogus values
+                                                       19
+tid2thread() is returning bogus values
+                                                          20
+tid2thread() is returning bogus values
+              5
+tid2thread() is returning bogus values
+                 6
+                    7
+tid2thread() is returning bogus values
+                       8
+tid2thread() is returning bogus values
+                          9
+tid2thread() is returning bogus values
+                            10
+tid2thread() is returning bogus values
+                               11
+tid2thread() is returning bogus values
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+tid2thread() is returning bogus values
+                                           15
+tid2thread() is returning bogus values
+                                              16
+tid2thread() is returning bogus values
+                                                 17
+                                                    18
+tid2thread() is returning bogus values
+                                                       19
+tid2thread() is returning bogus values
+                                                          20
+tid2thread() is returning bogus values
+                 6
+tid2thread() is returning bogus values
+                    7
+tid2thread() is returning bogus values
+                       8
+tid2thread() is returning bogus values
+                          9
+tid2thread() is returning bogus values
+                            10
+tid2thread() is returning bogus values
+                               11
+tid2thread() is returning bogus values
+                                  12
+tid2thread() is returning bogus values
+                                     13
+tid2thread() is returning bogus values
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                    7
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                       8
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                          9
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                            10
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                               11
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                  12
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                     13
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                        14
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                           15
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                              16
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                                 17
+                                                    18
+                                                       19
+                                                          20
+                                                    18
+                                                       19
+                                                          20
+                                                       19
+                                                          20
+                                                          20
+Back from LWPS.
+
+---------------------------------
+Differences (< reference > output)
+---------------------------------
+
+0a1,124
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+> tid2thread() is returning bogus values
+1a126
+> tid2thread() is returning bogus values
+2a128
+> tid2thread() is returning bogus values
+4a131
+> tid2thread() is returning bogus values
+6a134
+> tid2thread() is returning bogus values
+7a136
+> tid2thread() is returning bogus values
+8a138
+> tid2thread() is returning bogus values
+9a140
+> tid2thread() is returning bogus values
+10a142
+> tid2thread() is returning bogus values
+11a144
+> tid2thread() is returning bogus values
+12a146
+> tid2thread() is returning bogus values
+13a148
+> tid2thread() is returning bogus values
+14a150
+> tid2thread() is returning bogus values
+15a152
+> tid2thread() is returning bogus values
+16a154
+> tid2thread() is returning bogus values
+17a156
+> tid2thread() is returning bogus values
+18a158
+> tid2thread() is returning bogus values
+19a160
+> tid2thread() is returning bogus values
+20a162
+> tid2thread() is returning bogus values
+22a165
+> tid2thread() is returning bogus values
+23a167
+> tid2thread() is returning bogus values
+24a169
+> tid2thread() is returning bogus values
+26a172
+> tid2thread() is returning bogus values
+27a174
+> tid2thread() is returning bogus values
+28a176
+> tid2thread() is returning bogus values
+29a178
+> tid2thread() is returning bogus values
+30a180
+> tid2thread() is returning bogus values
+31a182
+> tid2thread() is returning bogus values
+32a184
+> tid2thread() is returning bogus values
+33a186
+> tid2thread() is returning bogus values
+34a188
+> tid2thread() is returning bogus values
+35a190
+> tid2thread() is returning bogus values
+36a192
+> tid2thread() is returning bogus values
+39a196
+> tid2thread() is returning bogus values
+43a201
+> tid2thread() is returning bogus values
+44a203
+> tid2thread() is returning bogus values
+45a205
+> tid2thread() is returning bogus values
+46a207
+> tid2thread() is returning bogus values
+47a209
+> tid2thread() is returning bogus values
+48a211
+> tid2thread() is returning bogus values
+50a214
+> tid2thread() is returning bogus values
+51a216
+> tid2thread() is returning bogus values
+52a218
+> tid2thread() is returning bogus values
+53a220
+> tid2thread() is returning bogus values
+54a222
+> tid2thread() is returning bogus values
+55a224
+> tid2thread() is returning bogus values
+56a226
+> tid2thread() is returning bogus values
+57a228
+> tid2thread() is returning bogus values
+59a231
+> tid2thread() is returning bogus values
+60a233
+> tid2thread() is returning bogus values
+61a235
+> tid2thread() is returning bogus values
+62a237
+> tid2thread() is returning bogus values
+64a240
+> tid2thread() is returning bogus values
+66a243
+> tid2thread() is returning bogus values
+67a245
+> tid2thread() is returning bogus values
+68a247
+> tid2thread() is returning bogus values
+69a249
+> tid2thread() is returning bogus values
+70a251
+> tid2thread() is returning bogus values
+71a253
+> tid2thread() is returning bogus values
+72a255
+> tid2thread() is returning bogus values
+73a257
+> tid2thread() is returning bogus values
+74a259
+> tid2thread() is returning bogus values
+75a261
+> tid2thread() is returning bogus values
+76a263
+> tid2thread() is returning bogus values
+78a266
+> tid2thread() is returning bogus values
+79a268
+> tid2thread() is returning bogus values
+80a270
+> tid2thread() is returning bogus values
+81a272
+> tid2thread() is returning bogus values
+82a274
+> tid2thread() is returning bogus values
+83a276
+> tid2thread() is returning bogus values
+84a278
+> tid2thread() is returning bogus values
+85a280
+> tid2thread() is returning bogus values
+86a282
+> tid2thread() is returning bogus values
+87a284
+> tid2thread() is returning bogus values
+89a287
+> tid2thread() is returning bogus values
+90a289
+> tid2thread() is returning bogus values
+91a291
+> tid2thread() is returning bogus values
+92a293
+> tid2thread() is returning bogus values
+93a295
+> tid2thread() is returning bogus values
+94a297
+> tid2thread() is returning bogus values
+95a299
+> tid2thread() is returning bogus values
+96a301
+> tid2thread() is returning bogus values
+97a303
+> tid2thread() is returning bogus values
+98a305
+> tid2thread() is returning bogus values
+99a307
+> tid2thread() is returning bogus values
+---------
